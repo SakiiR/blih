@@ -73,6 +73,8 @@ def blih(method, resource, auth, data=None):
     except requests.exceptions.HTTPError:
         raise BlihError('An HTTP Error occured')
     except ValueError:
+        print("HTTP Code: %d" % req.status_code)
+        print("HTTP Response: %s" % req.content)
         raise BlihError('Unknown Error')
 
     if req.status_code in [400, 401, 403, 404, 405, 409]:
